@@ -13,17 +13,18 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
  */
 class SampleController
 {
-    /** @var  GreetingService */
+    /**
+     * @Inject
+     * @var  GreetingService
+     */
     private $greetingService;
 
-    /** @var  EngineInterface */
+    /**
+     * @Inject
+     * @var  EngineInterface
+     */
     private $templating;
 
-    public function __construct(GreetingService $greetingService, EngineInterface $engineInterface)
-    {
-        $this->greetingService = $greetingService;
-        $this->templating = $engineInterface;
-    }
 
     /**
      * @Route("/hello/{name}")
