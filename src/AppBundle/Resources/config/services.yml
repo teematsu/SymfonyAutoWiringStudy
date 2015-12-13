@@ -1,0 +1,8 @@
+services:
+  app.controller.hello:
+    class: AppBundle\Controller\SampleController
+    arguments: ["@app.greeting_service"]
+
+  app.greeting_service:
+    class: AppBundle\GreetingService
+    arguments: ~

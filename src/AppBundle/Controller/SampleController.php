@@ -8,16 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * アノテーションでルートを定義するコントローラの例。
  *
- * @Route("/sample")
+ * @Route("/sample", service="app.controller.hello")
  */
 class SampleController
 {
     /** @var  GreetingService */
     private $greetingService;
 
-    public function __construct()
+    public function __construct(GreetingService $greetingService)
     {
-        $this->greetingService = new GreetingService();
+        $this->greetingService = $greetingService;
     }
 
     /**
