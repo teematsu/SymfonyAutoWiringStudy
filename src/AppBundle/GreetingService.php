@@ -11,7 +11,15 @@ namespace AppBundle;
 
 class GreetingService
 {
+    /** @var  CapitalizationService */
+    private $capitalizationService;
+
+    public function __construct(CapitalizationService $capitalizationService)
+    {
+        $this->capitalizationService = $capitalizationService;
+    }
+
     public function sayHelloTo($name) {
-        return "こんにちは、{$name} さん。";
+        return "こんにちは、" . $this->capitalizationService->capitalize($name) . " さん。";
     }
 }
