@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * アノテーションでルートを定義するコントローラの例。
  *
- * @Route("/sample", service="app.controller.hello")
+ * @Route("/sample", service="AppBundle\Controller\SampleController")
  */
 class SampleController
 {

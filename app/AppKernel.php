@@ -32,4 +32,27 @@ class AppKernel extends Kernel
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
+
+
+    /**
+     * コンテナのクラスとして、php-di/symfony2-bridge が提供するクラスを返す。
+     * @return string
+     */
+    protected function getContainerBaseClass()
+    {
+        return 'DI\Bridge\Symfony\SymfonyContainerBridge';
+    }
+
+    /**
+     * PHP-DIのコンテナを初期化する。
+     */
+    protected function initializeContainer()
+    {
+        parent::initializeContainer();
+
+        $builder = new \DI\ContainerBuilder();
+        $builder->wrapContainer($this->getContainer());
+        $this->getContainer()->setFallbackContainer($builder->build());
+    }
+
 }
