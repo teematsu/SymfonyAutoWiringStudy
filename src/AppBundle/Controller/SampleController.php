@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 use AppBundle\GreetingService;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 /**
  * アノテーションでルートを定義するコントローラの例。
@@ -15,9 +16,13 @@ class SampleController
     /** @var  GreetingService */
     private $greetingService;
 
-    public function __construct(GreetingService $greetingService)
+    /** @var  EngineInterface */
+    private $templating;
+
+    public function __construct(GreetingService $greetingService, EngineInterface $engineInterface)
     {
         $this->greetingService = $greetingService;
+        $this->templating = $engineInterface;
     }
 
     /**
@@ -26,7 +31,7 @@ class SampleController
     public function helloAction($name)
     {
         $message = $this->greetingService->sayHelloTo($name);
-        return new Response('<html><body>' . $message . '</body></html>');
+        return $this->templating->renderResponse('AppBundle:Sample:index.html.twig', ['message' => $message]);
     }
 
 }
