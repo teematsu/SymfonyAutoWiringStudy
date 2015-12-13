@@ -20,7 +20,7 @@ class SampleController
     private $greetingService;
 
     /**
-     * @Inject
+     * @Inject("templating")
      * @var  EngineInterface
      */
     private $templating;

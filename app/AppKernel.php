@@ -53,11 +53,6 @@ class AppKernel extends Kernel
         $builder = new \DI\ContainerBuilder();
         $builder->wrapContainer($this->getContainer());
         $builder->useAnnotations(true);
-
-        $builder->addDefinitions([
-            'Symfony\Bundle\FrameworkBundle\Templating\EngineInterface' => \DI\get('templating'),
-        ]);
-
         $this->getContainer()->setFallbackContainer($builder->build());
     }
 
